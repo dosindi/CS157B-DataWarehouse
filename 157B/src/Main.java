@@ -18,28 +18,26 @@ public class Main {
      */
     private static final String HELP_MESSAGE =
         "*** Commands: "
-            + "\n\t create, load, "
-            + "\n\t find_user <n>, find_forum <n>, find_thread <n>, find_post <n>  "
-            + "\n\t users, forums, forum_posts, threads, quit "
+            + "\n\t drill, slice, "
+            + "\n\t quit "
             + "\n***";
     public static void main(String[] args) {
          BufferedReader stdin = 
                 new BufferedReader(new InputStreamReader(System.in));
         String command;
-        Class klasses[] = {Forum.class, Thread.class, MyForumPost.class,
-                            User.class, UserDetails.class};
+        Class klasses[] = {Store.class, Quantity.class,
+                            Product.class, Date.class};
         HibernateContext.addClasses(klasses);
         
         
         HibernateContext.createSchema();
-        User.load();
-        Forum.load();
-        Thread.load();
-        MyForumPost.load();
-        
+        Store.load();
+        Date.load();
+        Product.load();
+        Quantity.load();
         
         //command 
-       
+        System.out.print(HELP_MESSAGE);
         do {
             System.out.print("\nCommand? ");
             
@@ -58,10 +56,17 @@ public class Main {
             else if (command.equalsIgnoreCase("slice")) {
                 System.out.println("Slice and Dice Baby");
             }
-            else if (!command.equalsIgnoreCase("quit")) {
-                System.out.println(HELP_MESSAGE);
-            }
         } while (!command.equalsIgnoreCase("quit"));
+        System.out.println("\n Quitting..."
+                        +"\n"
+                        +"\n\t\\"
+                        +"\n\t \\ji"
+                        +"\n\t /.((( "
+                        +"\n\t(,/\"(((__,--."
+                        +"\n\t   \\  ) _( /{ "
+                        +"\n\t    !|| \" :|| "
+                        +"\n\t    !|| \" :|| "
+                        +"\n\t    '''   '''");
         //
             
         /*

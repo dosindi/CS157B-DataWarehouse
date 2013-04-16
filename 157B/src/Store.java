@@ -1,7 +1,7 @@
 package forum;
 
 import forum.Forum;
-import forum.User;
+import forum.Quantity;
 import java.util.Set;
 import java.util.List;
 import javax.persistence.OneToMany;
@@ -28,18 +28,22 @@ import org.hibernate.Query;
  * @version January 2013
  */
 @Entity
-public class Thread{
+public class Store{
     
     private long id;
-    private String title;
+    private String country;
+    private String state;
+    private String city;
     public Forum forum;
-    public Set<MyForumPost> posts;
+    public Set<Quantity> quantities;
     
-    public Thread() {}
+    public Store() {}
     
-    public Thread(String title)
+    public Store(String country, String state, String city)
     {
-        this.title = title;
+        this.country = country;
+        this.state = state;
+        this.city = city;
     }
     
     @Id
@@ -48,27 +52,30 @@ public class Thread{
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
     
-    @Column(name="title")
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    @Column(name="country")
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+    
+    @Column(name="state")
+    public String getState() { return state; }
+    public void setState(String state) { this.state = state; }
+    
+    @Column(name="city")
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
     
     
-    @OneToMany(mappedBy="thread", targetEntity=MyForumPost.class,
+    @OneToMany(mappedBy="quantity", targetEntity=Quantity.class,
         cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    public Set<MyForumPost> getPosts() { return posts; }
-    public void setPosts(Set<MyForumPost> posts) { this.posts = posts; }
-    
-    @ManyToOne
-    @JoinColumn(name="forumId")
-    public Forum getForum() { return forum; }
-    public void setForum(Forum forum) { this.forum = forum; }
+    public Set<Quantity> getQuantities() { return quantities; }
+    public void setQuantities(Set<Quantity> posts) { this.quantities = quantities; }
     
     /**
      * Print Thread attributes.
      */
     public void print()
     {
-        System.out.printf("%d: %s #posts: %d forum: %s\n", id, title, posts.size(), forum.getName());
+        System.out.printf("%d: city: %s state: %s country: %s\n", id, city, state, country);
     }
     
     /**
@@ -85,19 +92,14 @@ public class Thread{
     public static void load()
     {
         Session session = HibernateContext.getSession();
-        Forum forum = Forum.find(1);
-        Forum forum2 = Forum.find(2);
-        Thread thread1 = new Thread("Computers are so cool!");
-        thread1.setForum(forum);
         
-        Thread thread2 = new Thread("What did you think of Star Wars?");
-        thread2.setForum(forum);
+        Store thread1 = new Store("United States", "California", "San Jose");
         
-        Thread thread3 = new Thread("Can you believe all these n00bs?");
-        thread3.setForum(forum2);
+        Store thread2 = new Store("United States", "New York", "New York City");
         
-        Thread thread4 = new Thread("I hate using PASCAL! It sucks!");
-        thread4.setForum(forum2);
+        Store thread3 = new Store("United States", "California", "San Francisco");
+        
+        Store thread4 = new Store("United States", "California", "San Jose");
 
         
         
@@ -121,12 +123,12 @@ public class Thread{
     public static void list()
     {
         Session session = HibernateContext.getSession();
-        Query query = session.createQuery("from Thread");
+        Query query = session.createQuery("from Store");
         
         System.out.println("All Threads:");
         
-        for (Thread thread : (List<Thread>) query.list()) {
-            thread.print();
+        for (Store store : (List<Store>) query.list()) {
+            store.print();
         }
 
         session.close();
@@ -137,34 +139,17 @@ public class Thread{
      * @param id the id to match.
      * @return the Thread or null.
      */
-    public static Thread find(long id)
+    public static Store find(long id)
     {
         Session session = HibernateContext.getSession();
-        Query query = session.createQuery("from Thread where id = :idvar");
+        Query query = session.createQuery("from Store where id = :idvar");
         
         query.setLong("idvar", id);
-        Thread thread = (Thread) query.uniqueResult();
+        Store store = (Store) query.uniqueResult();
         System.out.printf("ID you searched for: %d\n", id);
         
         session.close();
-        return thread;
-    }
-    
-    /**
-     * Fetch the Thread with a matching title.
-     * @param title the Thread title to match.
-     * @return the student or null.
-     */
-    public static Thread find(String title)
-    {
-        Session session = HibernateContext.getSession();
-        Query query = session.createQuery("from Thread where title = :title");
-        
-        query.setString("title", title);
-        Thread thread = (Thread) query.uniqueResult();
-        
-        session.close();
-        return thread;
+        return store;
     }
         
 }

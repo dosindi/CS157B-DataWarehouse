@@ -12,7 +12,7 @@ import java.util.List;
  * @author chris
  * @version January 2013	
  */
-public interface ForumPost {
+public interface Quantity{
 	
 //	public User getAuthor();
 //	

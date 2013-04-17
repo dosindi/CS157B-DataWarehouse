@@ -75,6 +75,7 @@ public class Quantity {
         {
             Session session = HibernateContext.getSession();
         
+            //SJ
             Date date1 = Date.find(1);
             Store store1 = Store.find(1);
             Product product1 = Product.find(1);
@@ -83,11 +84,31 @@ public class Quantity {
             post1.setDate(date1);
             post1.setProduct(product1);
             
+            // NYC
+            Date date2 = Date.find(3);
+            Store store2 = Store.find(2);
+            Product product2 = Product.find(2);
+            Quantity post2 = new Quantity(6);
+            post2.setStore(store2);
+            post2.setDate(date2);
+            post2.setProduct(product2);
+            
+            // SF
+            Date date3 = Date.find(4);
+            Store store3 = Store.find(3);
+            Product product3 = Product.find(2);
+            Quantity post3 = new Quantity(7);
+            post3.setStore(store3);
+            post3.setDate(date3);
+            post3.setProduct(product3);
+            
                 
             // Fill the Post table in a transaction.
             Transaction tx = session.beginTransaction(); 
             {
                 session.save(post1);
+                session.save(post2);
+                session.save(post3);
             }
             tx.commit();
             session.close();

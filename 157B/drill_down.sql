@@ -21,4 +21,5 @@ SELECT City as Quantity,
 			AND S.city = city
 	)as "Water Sports"
 	FROM forum.Store S
+	WHERE S.state = "California"
 	GROUP BY city;

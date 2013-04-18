@@ -104,7 +104,12 @@ public class Date
             session.save(new Date("2011", "December", "12"));
             session.save(new Date("2012", "December", "12"));
             session.save(new Date("2012", "December", "13"));
-            session.save(new Date("2013", "January", "1"));  
+            session.save(new Date("2013", "January", "1"));
+            session.save(new Date("2013", "January", "8"));
+            session.save(new Date("2013", "January", "15"));
+            session.save(new Date("2013", "January", "22"));
+            session.save(new Date("2013", "January", "29"));
+            session.save(new Date("2013", "February", "5"));
         }
         tx.commit();
         session.close();

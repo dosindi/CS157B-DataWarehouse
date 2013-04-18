@@ -114,7 +114,7 @@ public class Store{
         tx.commit();
         session.close();
         
-        System.out.println("Thread table loaded.");
+        System.out.println("Store table loaded.");
     }
     
     /**

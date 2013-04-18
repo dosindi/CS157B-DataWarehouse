@@ -75,42 +75,88 @@ public class Quantity {
         {
             Session session = HibernateContext.getSession();
         
+            /* STORES */
+            Store sj = Store.find(1); //SJ
+            Store nyc = Store.find(2); //NYC
+            Store sf = Store.find(3); //SF
+ 
+            /* PRODUCTS */
+            Product p1 = Product.find(1); // Football pads
+            Product p2 = Product.find(2); // Jordans
+            Product p3 = Product.find(3); // Flippers 
+            Product p4 = Product.find(4); // Raft
+            Product p5 = Product.find(5); // Foosball
+            
             //SJ
             Date date1 = Date.find(1);
-            Store store1 = Store.find(1);
-            Product product1 = Product.find(1);
             Quantity post1 = new Quantity(3);
-            post1.setStore(store1);
+            post1.setStore(sj);
             post1.setDate(date1);
-            post1.setProduct(product1);
+            post1.setProduct(p1);
             
             // NYC
-            Date date2 = Date.find(3);
-            Store store2 = Store.find(2);
-            Product product2 = Product.find(2);
+            Date date2 = Date.find(2);
             Quantity post2 = new Quantity(6);
-            post2.setStore(store2);
+            post2.setStore(nyc);
             post2.setDate(date2);
-            post2.setProduct(product2);
+            post2.setProduct(p2);
             
             // SF
-            Date date3 = Date.find(4);
-            Store store3 = Store.find(3);
-            Product product3 = Product.find(2);
+            Date date3 = Date.find(3);
             Quantity post3 = new Quantity(7);
-            post3.setStore(store3);
+            post3.setStore(sf);
             post3.setDate(date3);
-            post3.setProduct(product3);
+            post3.setProduct(p1);
             
             // SJ
-            Date date4 = Date.find(5);
-            Store store4 = Store.find(4);
-            Product product4 = Product.find(3);
+            Date date4 = Date.find(4);
             Quantity post4 = new Quantity(7);
-            post4.setStore(store4);
+            post4.setStore(sj);
             post4.setDate(date4);
-            post4.setProduct(product4);
-                
+            post4.setProduct(p4);
+            
+            // NYC
+            Date date5 = Date.find(5);
+            Quantity post5 = new Quantity(8);
+            post5.setStore(nyc);
+            post5.setDate(date5);
+            post5.setProduct(p4);
+            
+            // NYC
+            Date date6 = Date.find(6);
+            Quantity post6 = new Quantity(8);
+            post6.setStore(nyc);
+            post6.setDate(date6);
+            post6.setProduct(p5);
+            
+            // SF
+            Date date7 = Date.find(7);
+            Quantity post7 = new Quantity(15);
+            post7.setStore(sf);
+            post7.setDate(date7);
+            post7.setProduct(p3);
+            
+            // NYC
+            Date date8 = Date.find(8);
+            Quantity post8 = new Quantity(15);
+            post8.setStore(nyc);
+            post8.setDate(date8);
+            post8.setProduct(p3);
+            
+            // SJ
+            Date date9 = Date.find(9);
+            Quantity post9 = new Quantity(15);
+            post9.setStore(sj);
+            post9.setDate(date9);
+            post9.setProduct(p3);
+            
+            // SF
+            Date date10 = Date.find(10);
+            Quantity post10 = new Quantity(15);
+            post10.setStore(sf);
+            post10.setDate(date10);
+            post10.setProduct(p4);
+            
             // Fill the Post table in a transaction.
             Transaction tx = session.beginTransaction(); 
             {
@@ -118,6 +164,12 @@ public class Quantity {
                 session.save(post2);
                 session.save(post3);
                 session.save(post4);
+                session.save(post5);
+                session.save(post6);
+                session.save(post7);
+                session.save(post8);
+                session.save(post9);
+                session.save(post10);
             }
             tx.commit();
             session.close();

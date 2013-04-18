@@ -102,6 +102,14 @@ public class Quantity {
             post3.setDate(date3);
             post3.setProduct(product3);
             
+            // SJ
+            Date date4 = Date.find(5);
+            Store store4 = Store.find(4);
+            Product product4 = Product.find(3);
+            Quantity post4 = new Quantity(7);
+            post4.setStore(store4);
+            post4.setDate(date4);
+            post4.setProduct(product4);
                 
             // Fill the Post table in a transaction.
             Transaction tx = session.beginTransaction(); 
@@ -109,6 +117,7 @@ public class Quantity {
                 session.save(post1);
                 session.save(post2);
                 session.save(post3);
+                session.save(post4);
             }
             tx.commit();
             session.close();

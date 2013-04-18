@@ -3,16 +3,16 @@ SELECT City as Quantity,
 		FROM forum.quantity, forum.store, forum.product
 		WHERE storeID = store.id
 			AND productID = product.id
-			AND category = "Team Sports"
+			AND category = "Individual Sports"
 			AND S.city = city
-	) as "Team Sports",
+	) as "Individual Sports",
 	(SELECT sum(quantity)
 		FROM forum.quantity, forum.store, forum.product
 		WHERE storeID = store.id
 			AND productID = product.id
-			AND category = "Individual Sports"
+			AND category = "Team Sports"
 			AND S.city = city
-	)as "Individual Sports",
+	)as "Teams Sports",
 	(SELECT sum(quantity)
 		FROM forum.quantity, forum.store, forum.product
 		WHERE storeID = store.id

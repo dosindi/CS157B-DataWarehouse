@@ -37,7 +37,7 @@ public class Main {
         Quantity.load();
         
         //command 
-        System.out.print(HELP_MESSAGE);
+       /* System.out.print(HELP_MESSAGE);
         do {
             System.out.print("\nCommand? ");
             
@@ -56,8 +56,8 @@ public class Main {
             else if (command.equalsIgnoreCase("slice")) {
                 System.out.println("Slice and Dice Baby");
             }
-        } while (!command.equalsIgnoreCase("quit"));
-        System.out.println("\n Quitting..."
+        } while (!command.equalsIgnoreCase("quit"));*/
+        System.out.println("\n All tables uploaded."
                         +"\n"
                         +"\n\t\\"
                         +"\n\t \\ji"

@@ -2,6 +2,7 @@ package forum;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +36,7 @@ public class Date
     private String year;
     private String month;
     private String day;
-    private Quantity quantity;
+    private List<Quantity> quantities;
     
     public Date() {}
     
@@ -64,11 +65,10 @@ public class Date
     public String getDay() {return day;}
     public void setDay(String day) {this.day = day;}
     
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "quantityId")
-    public Quantity getUserDetails() {return quantity;}
-    public void setUserDetails(Quantity quantity) 
-                                        { this.quantity = quantity; }
+    @OneToMany(mappedBy="quantity", targetEntity=Quantity.class,
+        cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    public List<Quantity> getQuantities() { return quantities; }
+    public void setQuantities(List<Quantity> quantities) { this.quantities = quantities; }
     
     
     /**
@@ -123,7 +123,7 @@ public class Date
     public static void list()
     {
         Session session = HibernateContext.getSession();
-        Query query = session.createQuery("from User");
+        Query query = session.createQuery("from Date");
         
         System.out.println("All Product: ");
         

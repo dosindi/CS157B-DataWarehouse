@@ -1,6 +1,5 @@
 package forum;
 
-import forum.Forum;
 import forum.Quantity;
 import java.util.Set;
 import java.util.List;
@@ -34,7 +33,6 @@ public class Store{
     private String country;
     private String state;
     private String city;
-    public Forum forum;
     public Set<Quantity> quantities;
     
     public Store() {}
@@ -68,7 +66,7 @@ public class Store{
     @OneToMany(mappedBy="quantity", targetEntity=Quantity.class,
         cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     public Set<Quantity> getQuantities() { return quantities; }
-    public void setQuantities(Set<Quantity> posts) { this.quantities = quantities; }
+    public void setQuantities(Set<Quantity> quantities) { this.quantities = quantities; }
     
     /**
      * Print Thread attributes.

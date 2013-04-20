@@ -174,7 +174,7 @@ public class Quantity {
             tx.commit();
             session.close();
         
-            System.out.println("Posts table loaded.");
+            System.out.println("Quantity table loaded.");
         }
         
         public static Quantity find(long id)
